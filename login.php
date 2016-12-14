@@ -19,7 +19,7 @@ if($_POST && !empty($_POST['username']) && !empty($_POST['password'])){
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="/css/foundation.min.css">
+    <link rel="stylesheet" href="css/foundation.min.css">
     <link rel="stylesheet" href="css/master.css">
     <link href="https://fonts.googleapis.com/css?family=Montserrat|Open+Sans:400,700" rel="stylesheet"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
