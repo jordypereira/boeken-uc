@@ -64,7 +64,7 @@ try {
     {
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Gelukt, boek nr " . $_POST['id'] . " met succes gewijzigd";
-      header("Refresh:0;  url=index.php");
+      header("Refresh:0;  url=boeken.php");
     }else{
       $_SESSION['notification']['type'] = "error";
       $_SESSION['notification']['text'] =  "Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de <a >systeembeheerder</a> wanneer deze fout blijft aanhouden. " ;
@@ -104,7 +104,7 @@ if(isset($_POST['add'])){
     if($success){
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Boek toegevoegd! " ;
-      header("location: index.php");
+      header("location: boeken.php");
     }
   } catch (PDOException $e) {
     $_SESSION['notification']['type'] = "error";
@@ -125,7 +125,7 @@ if(isset($_GET['delete'])){
     if($success){
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Boek nr " . $_GET['delete'] . " is verwijderd";
-      header("location: index.php");
+      header("location: boeken.php");
     }
 
   } catch (PDOException $e) {
@@ -146,11 +146,78 @@ if(isset($_GET['delete'])){
    </head>
    <body>
      <a href="login.php?status=loggedout">Log Out</a>
-     <h1>Dashboard Boeken UC Brabo</h1>
-
      <ul>
-       <li><a href="boeken.php">Boeken</a></li>
-       <li><a href="verkopers.php">Verkopers</a></li>
+       <li><a href="index.php">Terug naar Dashboard</a></li>
      </ul>
+     <h1>Boeken</h1>
+
+     <?php   include_once 'partials/message-show.php'; ?>
+
+     <?php if(isset($_GET['edit'])): ?>
+
+      <h3>Boek <?= $boekenEditShow['naam'] ?> ( #<?= $boekenEditShow['ID'] ?> ) wijzigen</h3>
+
+      <form action="<?php $_SERVER['PHP_SELF'] ?>" method="post">
+        <input type="text" name="naam" value="<?= $boekenEditShow['naam'] ?>">
+        <input type="text" name="titel" value="<?= $boekenEditShow['titel'] ?>">
+        <input type="text" name="auteur" value="<?= $boekenEditShow['auteur'] ?>">
+        <input type="text" name="vraagprijs" value="<?= $boekenEditShow['vraagprijs'] ?>">
+        <input type="text" name="opmerking" value="<?= $boekenEditShow['opmerking'] ?>">
+        <input type="text" name="telnr" value="<?= $boekenEditShow['telnr'] ?>">
+        <input type="text" name="email" value="<?= $boekenEditShow['email'] ?>">
+        <input type="hidden" name="id" value="<?= $boekenEditShow['ID'] ?>">
+
+        <input type="submit" class="button" name="wijzigen" value="Wijzigen">
+      </form>
+    <?php endif; ?>
+     <table>
+       <thead>
+         <td>#</td>
+         <td>Naam</td>
+         <td>Titel</td>
+         <td>Auteur</td>
+         <td>Vraagprijs</td>
+         <td>Opmerking</td>
+         <td>telnr</td>
+         <td>email</td>
+         <td></td>
+         <td></td>
+       </thead>
+       <tbody>
+         <?php foreach($boekenArray as $row): ?>
+           <tr>
+             <td><?= $row['ID'] ?></td>
+             <td><?= $row['naam'] ?></td>
+             <td><?= $row['titel'] ?></td>
+             <td><?= $row['auteur'] ?></td>
+             <td>&euro;<?= $row['vraagprijs'] ?></td>
+             <td><?= $row['opmerking'] ?></td>
+             <td><?= $row['telnr'] ?></td>
+             <td><?= $row['email'] ?></td>
+             <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
+             <td>
+                <button type="submit" name="edit" value="<?= $row['ID'] ?>"><img class="icon" src="img/edit.png" alt="edit-icon"></button>
+              </td>
+             <td>
+               <button type="submit" name="delete" value="<?= $row['ID'] ?>"><img class="icon" src="img/remove-icon.png" alt="delete"></button>
+             </td>
+             </form>
+           </tr>
+         <?php endforeach; ?>
+         <tr>
+           <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+             <td>Add a new book</td>
+             <td><input type="text" name="naam" placeholder="naam"></td>
+             <td><input type="text" name="titel" placeholder="titel"></td>
+             <td><input type="text" name="auteur" placeholder="auteur"></td>
+             <td><input type="text" name="vraagprijs" placeholder="vraagprijs"></td>
+             <td><input type="text" name="opmerking" placeholder="opmerking"></td>
+             <td><input type="text" name="telnr" placeholder="telnr"></td>
+             <td><input type="text" name="email" placeholder="email"></td>
+             <td><input class="button" type="submit" name="add" value="Add"></td>
+           </form>
+         </tr>
+       </tbody>
+     </table>
    </body>
  </html>
