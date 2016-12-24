@@ -139,6 +139,7 @@ if(isset($_GET['delete'])){
  <html>
    <head>
      <meta charset="utf-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
      <link rel="stylesheet" href="css/foundation.min.css">
      <link rel="stylesheet" href="css/master.css">
      <title>Boeken UC Brabo</title>
@@ -192,10 +193,10 @@ if(isset($_GET['delete'])){
              <td><?= $row['email'] ?></td>
              <form action="<?= $_SERVER['PHP_SELF'] ?>" method="get">
              <td>
-                <button type="submit" name="edit" value="<?= $row['ID'] ?>"><img src="img/edit.png" alt="edit-icon" height="16px" width="16px"></button>
+                <button type="submit" name="edit" value="<?= $row['ID'] ?>"><img class="icon" src="img/edit.png" alt="edit-icon"></button>
               </td>
              <td>
-               <button type="submit" name="delete" value="<?= $row['ID'] ?>"><img class="delete" src="img/remove-icon.png" alt="delete" height="16px" width="16px"></button>
+               <button type="submit" name="delete" value="<?= $row['ID'] ?>"><img class="icon" src="img/remove-icon.png" alt="delete"></button>
              </td>
              </form>
            </tr>

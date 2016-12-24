@@ -1,7 +1,9 @@
 body{
   margin: 5px 15px;
 }
-.delete{
-  width: 20px !important;
-  height: 20px !important;
+.icon{
+  min-width: 20px !important;
+  min-height: 20px !important;
+  max-width: 20px !important;
+  max-height: 20px !important;
 }
