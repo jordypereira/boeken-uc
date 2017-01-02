@@ -45,13 +45,14 @@ try {
   //UPDATE ROW
   if(isset($_POST['wijzigen']))
   {
-    $queryWijzigen = "UPDATE boeken_uc SET naam = :naam, titel = :titel, auteur = :auteur, vraagprijs = :vraagprijs, opmerking = :opmerking, telnr = :telnr, email = :email WHERE id = :id LIMIT 1";
+    $queryWijzigen = "UPDATE boeken_uc SET naam = :naam, titel = :titel, auteur = :auteur, nieuwprijs = :nieuwprijs, vraagprijs = :vraagprijs, opmerking = :opmerking, telnr = :telnr, email = :email WHERE id = :id LIMIT 1";
 
     $statementWijzigen = $db->prepare($queryWijzigen);
 
     $statementWijzigen->bindValue(":naam", $_POST['naam']);
     $statementWijzigen->bindValue(":titel", $_POST['titel']);
     $statementWijzigen->bindValue(":auteur", $_POST['auteur']);
+    $statementWijzigen->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
     $statementWijzigen->bindValue(":vraagprijs", $_POST['vraagprijs']);
     $statementWijzigen->bindValue(":opmerking", $_POST['opmerking']);
     $statementWijzigen->bindValue(":telnr", $_POST['telnr']);
@@ -79,25 +80,19 @@ try {
 //ADD row
 if(isset($_POST['add'])){
   try {
-    $naam = $_POST['naam'];
-    $titel = $_POST['titel'];
-    $auteur = $_POST['auteur'];
-    $vraagprijs = $_POST['vraagprijs'];
-    $opmerking = $_POST['opmerking'];
-    $telnr = $_POST['telnr'];
-    $email = $_POST['email'];
 
-    $queryString = "INSERT INTO boeken_uc (naam, titel, auteur, vraagprijs, opmerking, telnr, email) VALUES (:naam, :titel, :auteur, :vraagprijs, :opmerking, :telnr, :email) ";
+    $queryString = "INSERT INTO boeken_uc (naam, titel, auteur, nieuwprijs, vraagprijs, opmerking, telnr, email) VALUES (:naam, :titel, :auteur, :nieuwprijs, :vraagprijs, :opmerking, :telnr, :email) ";
 
     $statement = $db->prepare($queryString);
 
-    $statement->bindValue(':naam', $naam);
-    $statement->bindValue(':titel', $titel);
-    $statement->bindValue(':auteur', $auteur);
-    $statement->bindValue(':vraagprijs', $vraagprijs);
-    $statement->bindValue(':opmerking', $opmerking);
-    $statement->bindValue(':telnr', $telnr);
-    $statement->bindValue(':email', $email);
+    $statement->bindValue(':naam', $_POST['naam']);
+    $statement->bindValue(':titel', $_POST['titel']);
+    $statement->bindValue(':auteur', $_POST['auteur']);
+    $statementWijzigen->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
+    $statement->bindValue(':vraagprijs', $_POST['vraagprijs']);
+    $statement->bindValue(':opmerking', $_POST['opmerking']);
+    $statement->bindValue(':telnr', $_POST['telnr']);
+    $statement->bindValue(':email', $_POST['email']);
 
     $success = $statement->execute();
 
