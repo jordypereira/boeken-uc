@@ -161,6 +161,7 @@ if(isset($_GET['delete'])){
         <input type="text" name="naam" value="<?= $boekenEditShow['naam'] ?>">
         <input type="text" name="titel" value="<?= $boekenEditShow['titel'] ?>">
         <input type="text" name="auteur" value="<?= $boekenEditShow['auteur'] ?>">
+        <input type="text" name="nieuwprijs" value="<?= $boekenEditShow['nieuwprijs'] ?>">
         <input type="text" name="vraagprijs" value="<?= $boekenEditShow['vraagprijs'] ?>">
         <input type="text" name="opmerking" value="<?= $boekenEditShow['opmerking'] ?>">
         <input type="text" name="telnr" value="<?= $boekenEditShow['telnr'] ?>">
@@ -176,6 +177,7 @@ if(isset($_GET['delete'])){
          <td>Naam</td>
          <td>Titel</td>
          <td>Auteur</td>
+         <td>Nieuwprijs</td>
          <td>Vraagprijs</td>
          <td>Opmerking</td>
          <td>telnr</td>
@@ -190,6 +192,7 @@ if(isset($_GET['delete'])){
              <td><?= $row['naam'] ?></td>
              <td><?= $row['titel'] ?></td>
              <td><?= $row['auteur'] ?></td>
+             <td>&euro;<?= $row['nieuwprijs'] ?></td>
              <td>&euro;<?= $row['vraagprijs'] ?></td>
              <td><?= $row['opmerking'] ?></td>
              <td><?= $row['telnr'] ?></td>
@@ -210,6 +213,7 @@ if(isset($_GET['delete'])){
              <td><input type="text" name="naam" placeholder="naam"></td>
              <td><input type="text" name="titel" placeholder="titel"></td>
              <td><input type="text" name="auteur" placeholder="auteur"></td>
+             <td><input type="text" name="nieuwprijs" placeholder="nieuwprijs"></td>
              <td><input type="text" name="vraagprijs" placeholder="vraagprijs"></td>
              <td><input type="text" name="opmerking" placeholder="opmerking"></td>
              <td><input type="text" name="telnr" placeholder="telnr"></td>
