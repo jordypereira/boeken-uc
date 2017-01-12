@@ -88,7 +88,7 @@ if(isset($_POST['add'])){
     $statement->bindValue(':naam', $_POST['naam']);
     $statement->bindValue(':titel', $_POST['titel']);
     $statement->bindValue(':auteur', $_POST['auteur']);
-    $statementWijzigen->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
+    $statement->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
     $statement->bindValue(':vraagprijs', $_POST['vraagprijs']);
     $statement->bindValue(':opmerking', $_POST['opmerking']);
     $statement->bindValue(':telnr', $_POST['telnr']);
@@ -203,7 +203,7 @@ if(isset($_GET['delete'])){
            </tr>
          <?php endforeach; ?>
          <tr>
-           <form action="<?= $_SERVER['PHP_SELF'] ?>" method="post">
+           <form action="" method="post">
              <td>Add a new book</td>
              <td><input type="text" name="naam" placeholder="naam"></td>
              <td><input type="text" name="titel" placeholder="titel"></td>
