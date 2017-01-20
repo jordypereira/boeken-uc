@@ -45,7 +45,7 @@ try {
   //UPDATE ROW
   if(isset($_POST['wijzigen']))
   {
-    $queryWijzigen = "UPDATE boeken_uc SET naam = :naam, titel = :titel, auteur = :auteur, nieuwprijs = :nieuwprijs, vraagprijs = :vraagprijs, opmerking = :opmerking, telnr = :telnr, email = :email WHERE id = :id LIMIT 1";
+    $queryWijzigen = "UPDATE boeken_uc SET naam = :naam, titel = :titel, auteur = :auteur, nieuwprijs = :nieuwprijs, vraagprijs = :vraagprijs, inStock = :instock, opmerking = :opmerking, telnr = :telnr, email = :email WHERE id = :id LIMIT 1";
 
     $statementWijzigen = $db->prepare($queryWijzigen);
 
@@ -54,6 +54,7 @@ try {
     $statementWijzigen->bindValue(":auteur", $_POST['auteur']);
     $statementWijzigen->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
     $statementWijzigen->bindValue(":vraagprijs", $_POST['vraagprijs']);
+    $statementWijzigen->bindValue(":instock", $_POST['instock']);
     $statementWijzigen->bindValue(":opmerking", $_POST['opmerking']);
     $statementWijzigen->bindValue(":telnr", $_POST['telnr']);
     $statementWijzigen->bindValue(":email", $_POST['email']);
@@ -81,7 +82,7 @@ try {
 if(isset($_POST['add'])){
   try {
 
-    $queryString = "INSERT INTO boeken_uc (naam, titel, auteur, nieuwprijs, vraagprijs, opmerking, telnr, email) VALUES (:naam, :titel, :auteur, :nieuwprijs, :vraagprijs, :opmerking, :telnr, :email) ";
+    $queryString = "INSERT INTO boeken_uc (naam, titel, auteur, nieuwprijs, vraagprijs, inStock, opmerking, telnr, email) VALUES (:naam, :titel, :auteur, :nieuwprijs, :vraagprijs, :instock, :opmerking, :telnr, :email) ";
 
     $statement = $db->prepare($queryString);
 
@@ -90,6 +91,7 @@ if(isset($_POST['add'])){
     $statement->bindValue(':auteur', $_POST['auteur']);
     $statement->bindValue(":nieuwprijs", $_POST['nieuwprijs']);
     $statement->bindValue(':vraagprijs', $_POST['vraagprijs']);
+    $statement->bindValue(':instock', $_POST['instock']);
     $statement->bindValue(':opmerking', $_POST['opmerking']);
     $statement->bindValue(':telnr', $_POST['telnr']);
     $statement->bindValue(':email', $_POST['email']);
@@ -158,6 +160,7 @@ if(isset($_GET['delete'])){
         <input type="text" name="auteur" value="<?= $boekenEditShow['auteur'] ?>">
         <input type="text" name="nieuwprijs" value="<?= $boekenEditShow['nieuwprijs'] ?>">
         <input type="text" name="vraagprijs" value="<?= $boekenEditShow['vraagprijs'] ?>">
+        <input type="number" name="instock" min="0" max="1" step="1" value="<?= $boekenEditShow['inStock'] ?>">
         <input type="text" name="opmerking" value="<?= $boekenEditShow['opmerking'] ?>">
         <input type="text" name="telnr" value="<?= $boekenEditShow['telnr'] ?>">
         <input type="text" name="email" value="<?= $boekenEditShow['email'] ?>">
@@ -174,6 +177,7 @@ if(isset($_GET['delete'])){
          <td>Auteur</td>
          <td>Nieuwprijs</td>
          <td>Vraagprijs</td>
+         <td>In Stock</td>
          <td>Opmerking</td>
          <td>telnr</td>
          <td>email</td>
@@ -189,6 +193,7 @@ if(isset($_GET['delete'])){
              <td><?= $row['auteur'] ?></td>
              <td>&euro;<?= $row['nieuwprijs'] ?></td>
              <td>&euro;<?= $row['vraagprijs'] ?></td>
+             <td><?php if($row['inStock'] == 0) echo 'nee'; else echo 'ja'; ?></td>
              <td><?= $row['opmerking'] ?></td>
              <td><?= $row['telnr'] ?></td>
              <td><?= $row['email'] ?></td>
@@ -210,6 +215,7 @@ if(isset($_GET['delete'])){
              <td><input type="text" name="auteur" placeholder="auteur"></td>
              <td><input type="text" name="nieuwprijs" placeholder="nieuwprijs"></td>
              <td><input type="text" name="vraagprijs" placeholder="vraagprijs"></td>
+             <td><input type="number" name="instock" min="0" max="1" step="1" value="0"></td>
              <td><input type="text" name="opmerking" placeholder="opmerking"></td>
              <td><input type="text" name="telnr" placeholder="telnr"></td>
              <td><input type="text" name="email" placeholder="email"></td>
