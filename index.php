@@ -151,6 +151,7 @@ if(isset($_GET['delete'])){
      <ul>
        <li><a href="boeken.php">Boeken</a></li>
        <li><a href="verkopers.php">Verkopers</a></li>
+       <li><a href="boeken-gezocht.php">Boeken Gezocht</a></li>
      </ul>
    </body>
  </html>
