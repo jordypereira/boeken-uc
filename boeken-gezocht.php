@@ -65,7 +65,7 @@ try {
     {
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Gelukt, boek nr " . $_POST['id'] . " met succes gewijzigd";
-      header("Refresh:0;  url=boeken.php");
+      header("Refresh:0;  url=boeken-gezocht.php");
     }else{
       $_SESSION['notification']['type'] = "error";
       $_SESSION['notification']['text'] =  "Aanpassing is niet gelukt. Probeer opnieuw of neem contact op met de <a >systeembeheerder</a> wanneer deze fout blijft aanhouden. " ;
@@ -99,7 +99,7 @@ if(isset($_POST['add'])){
     if($success){
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Boek toegevoegd! " ;
-      header("location: boeken.php");
+      header("location: boeken-gezocht.php");
     }
   } catch (PDOException $e) {
     $_SESSION['notification']['type'] = "error";
@@ -120,7 +120,7 @@ if(isset($_GET['delete'])){
     if($success){
       $_SESSION['notification']['type'] = "success";
       $_SESSION['notification']['text'] =  "Boek nr " . $_GET['delete'] . " is verwijderd";
-      header("location: boeken.php");
+      header("location: boeken-gezocht.php");
     }
 
   } catch (PDOException $e) {
