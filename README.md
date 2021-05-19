@@ -7,3 +7,4 @@ CRUD Table to get an overview of books. With Auth!
 ## Tech Stack
 - PHP
 - Bootstrap
+- MySQL
